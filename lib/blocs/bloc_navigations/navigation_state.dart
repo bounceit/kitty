@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kitty/pages/main_pages/home_page.dart';
+
+import '../../pages/main_pages/home_page/home_page.dart';
 
 enum NavigationStateStatus {
   initial,
@@ -11,7 +12,7 @@ enum NavigationStateStatus {
 class NavigationState {
   const NavigationState({
     this.status = NavigationStateStatus.initial,
-    this.currentIndex = 0,
+    this.currentIndex = 1,
     this.route = HomePage.routeName,
   });
 
