@@ -8,10 +8,7 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
       : super(
           const NavigationState(),
         ) {
-    on<NavigateMenu>((
-      event,
-      emit,
-    ) {
+    on<NavigateMenu>((event, emit) {
       emit(
         state.copyWith(
           status: NavigationStateStatus.menu,
@@ -21,10 +18,7 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
       );
     });
 
-    on<NavigateTab>((
-      event,
-      emit,
-    ) {
+    on<NavigateTab>((event, emit) {
       emit(
         state.copyWith(
           status: NavigationStateStatus.tab,
