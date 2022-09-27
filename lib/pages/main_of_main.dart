@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kitty/blocs/bloc_navigations/navigation_bloc.dart';
-import 'package:kitty/pages/main_pages/home_page.dart';
+import 'package:kitty/pages/main_pages/home_page/home_page.dart';
 import 'package:kitty/pages/main_pages/report_page/report_page.dart';
-import 'package:kitty/pages/main_pages/settings_page.dart';
+import 'package:kitty/pages/main_pages/settings_page/settings_page.dart';
 
 import '../blocs/bloc_navigations/navigation_event.dart';
 import '../blocs/bloc_navigations/navigation_state.dart';
 import '../routes/routes.dart';
 import '../widgets/navigation/bottom_nav_bar.dart';
+import 'main_pages/settings_page/settings_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -75,7 +76,7 @@ class _MainPageState extends State<MainPage> {
             child: Scaffold(
               body: Navigator(
                 key: _navigatorKey,
-                initialRoute: ReportPage.routeName,
+                initialRoute: HomePage.routeName,
                 onGenerateRoute: AppRouter.generateRoute,
               ),
               bottomNavigationBar: BottomNavBar(
