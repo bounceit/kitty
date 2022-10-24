@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kitty/pages/splash_page/splash_page.dart';
+import 'package:kitty/resources/app_theme.dart';
 import 'package:kitty/routes/routes.dart';
 
 void main() async {
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: AppThemes.light(),
       initialRoute: SplashScreen.routeName,
       onGenerateRoute: AppRouter.generateRoute,
     );
