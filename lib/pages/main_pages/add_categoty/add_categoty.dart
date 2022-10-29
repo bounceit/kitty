@@ -98,7 +98,7 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
                     TextButton(
                         onPressed: () {
                           context.read<AddCategoryBloc>().add(AddCategoryEvent(
-                              category: categoryName.toString(),
+                              category: categoryName.text,
                               selectedIcon: selectedIcon));
                           Navigator.pushNamedAndRemoveUntil(
                               context, HomePage.routeName, (route) => false);
