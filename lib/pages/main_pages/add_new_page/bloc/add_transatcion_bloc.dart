@@ -15,6 +15,8 @@ class AddTransatcionBloc extends Bloc<AddTransatcionEvent, void> {
         case TransactionType.income:
           final kittys = TransactionModel(
             id: Random().nextInt(999999),
+            categoryIcon: event.categoryIcon,
+            categoryName: event.categoryName,
             title: event.title,
             amount: event.amount,
             type: 'Income',
@@ -26,6 +28,8 @@ class AddTransatcionBloc extends Bloc<AddTransatcionEvent, void> {
         case TransactionType.expense:
           final kittys = TransactionModel(
             id: Random().nextInt(999999),
+            categoryIcon: event.categoryIcon,
+            categoryName: event.categoryName,
             title: event.title,
             amount: event.amount,
             type: 'Expensive',
