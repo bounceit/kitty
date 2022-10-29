@@ -16,7 +16,7 @@ import 'package:kitty/services.dart/database.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class AddNew extends StatefulWidget {
-  AddNew({Key? key}) : super(key: key);
+  const AddNew({Key? key}) : super(key: key);
   static const routeName = '/add_new';
 
   @override
@@ -24,34 +24,21 @@ class AddNew extends StatefulWidget {
 }
 
 class _AddNewState extends State<AddNew> {
-  void _onPressed() {
-    final title = discriptionController.text;
-    final amount = int.parse(amountController.text);
-    final TransactionType type;
-    if (dropdownvalue == 'Income') {
-      type = TransactionType.income;
-    } else {
-      type = TransactionType.expense;
-    }
-    context.read<AddTransatcionBloc>().add(AddTransatcionEvent(
-          title: title,
-          amount: amount,
-          type: type,
-        ));
-  }
+  void _onPressed() {}
 
-  var items = [
+  String? selectedIcon;
+  String? selectedName;
+  List<String> items = [
     'Expensive',
     'Income',
   ];
   String dropdownvalue = 'Income';
   TextEditingController discriptionController = TextEditingController();
-
   TextEditingController amountController = TextEditingController();
-
+  TextEditingController categoryNameController = TextEditingController();
+  final PanelController pc = PanelController();
   @override
   Widget build(BuildContext context) {
-    final PanelController pc = PanelController();
     return BlocProvider(
       create: (context) => AddTransatcionBloc(),
       child: Scaffold(
@@ -99,9 +86,10 @@ class _AddNewState extends State<AddNew> {
                     },
                   ),
                   const SizedBox(height: 25),
-                  GestureDetector(
+                  InkWell(
                     onTap: () => pc.open(),
                     child: TextField(
+                      controller: categoryNameController,
                       onTap: () => pc.open(),
                       readOnly: true,
                       keyboardType: TextInputType.none,
@@ -150,7 +138,25 @@ class _AddNewState extends State<AddNew> {
                       alignment: Alignment.bottomCenter,
                       child: ElevatedButton(
                           onPressed: () {
-                            _onPressed();
+                            final title = discriptionController.text;
+                            final amount = int.parse(amountController.text);
+                            final icon = selectedIcon!;
+                            final name = selectedName!;
+                            final TransactionType type;
+                            if (dropdownvalue == 'Income') {
+                              type = TransactionType.income;
+                            } else {
+                              type = TransactionType.expense;
+                            }
+                            context
+                                .read<AddTransatcionBloc>()
+                                .add(AddTransatcionEvent(
+                                  categoryIcon: icon,
+                                  categoryName: name,
+                                  title: title,
+                                  amount: amount,
+                                  type: type,
+                                ));
                             Navigator.pushNamedAndRemoveUntil(
                                 context, HomePage.routeName, (route) => false);
                           },
@@ -160,7 +166,7 @@ class _AddNewState extends State<AddNew> {
                   color: AppColors.appBarAddPage,
                   borderRadius: BorderRadius.circular(20),
                   minHeight: 0.0,
-                  maxHeight: MediaQuery.of(context).size.height * 0.25,
+                  maxHeight: MediaQuery.of(context).size.height * 0.45,
                   defaultPanelState: PanelState.CLOSED,
                   controller: pc,
                   panel: Column(
@@ -178,8 +184,7 @@ class _AddNewState extends State<AddNew> {
                         style: const TextStyle(
                             fontSize: 12, fontWeight: FontWeight.w500),
                       ),
-                      Container(
-                        height: 200,
+                      Expanded(
                         child: FutureBuilder(
                             future: KittyRepository().getAllCategory(),
                             builder: (context, snapshot) {
@@ -191,24 +196,54 @@ class _AddNewState extends State<AddNew> {
                               }
                               final List<CategoryModel> categorys =
                                   snapshot.data as List<CategoryModel>;
-                              print(categorys);
-
-                              return GridView.builder(
-                                  gridDelegate:
-                                      const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 4,
-                                    mainAxisSpacing: 35,
-                                    crossAxisSpacing: 65,
-                                    childAspectRatio: 1.0,
-                                  ),
-                                  itemBuilder: (context, index) {
-                                    return Column(
-                                      children: [
-                                        SvgPicture.asset(categorys[index].icon),
-                                        Text(categorys[index].category),
-                                      ],
-                                    );
-                                  });
+                              if (categorys.isEmpty) {
+                                return Text('Добавьте категорию');
+                              } else {
+                                return GridView.builder(
+                                    itemCount: categorys.length,
+                                    gridDelegate:
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 4,
+                                      // mainAxisSpacing: 35,
+                                      // crossAxisSpacing: 5,
+                                      mainAxisExtent: 90,
+                                    ),
+                                    itemBuilder: (context, index) {
+                                      return Column(
+                                        children: [
+                                          Container(
+                                            height: 50,
+                                            width: 50,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(150),
+                                              color: selectedIcon ==
+                                                      categorys[index].icon
+                                                  ? Colors.blue
+                                                  : Colors.amber[200],
+                                            ),
+                                            alignment:
+                                                AlignmentDirectional.center,
+                                            child: TextButton(
+                                              child: SvgPicture.asset(
+                                                categorys[index].icon,
+                                              ),
+                                              onPressed: () {
+                                                setState(() {
+                                                  selectedName =
+                                                      categorys[index].category;
+                                                  selectedIcon =
+                                                      categorys[index].icon;
+                                                  // print(selectedIcon);
+                                                });
+                                              },
+                                            ),
+                                          ),
+                                          Text(categorys[index].category)
+                                        ],
+                                      );
+                                    });
+                              }
                             }),
                       ),
                       TextButton(
