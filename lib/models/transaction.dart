@@ -5,8 +5,8 @@ class TransactionModel {
         title: json['title'] ?? '',
         amount: json['amount'] ?? 0,
         type: json['type'] ?? 0,
-        categoryIcon: json['ICON'] ?? '',
-        categoryName: json['CATEGORY'] ?? '',
+        categoryIcon: json['categoryIcon'] ?? '',
+        categoryName: json['categoryName'] ?? '',
       );
   TransactionModel({
     this.id = 0,
@@ -29,7 +29,7 @@ class TransactionModel {
         'title': title,
         'amount': amount,
         'type': type,
-        'ICON': categoryIcon,
-        'CATEGORY': categoryName,
+        'categoryIcon': categoryIcon,
+        'categoryName': categoryName,
       };
 }
