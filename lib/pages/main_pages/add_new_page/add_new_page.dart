@@ -1,18 +1,14 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/models/category_model.dart';
 
-import 'package:kitty/models/transaction.dart';
 import 'package:kitty/pages/main_pages/add_categoty/add_categoty.dart';
 import 'package:kitty/pages/main_pages/add_new_page/bloc/add_transatcion_bloc.dart';
 import 'package:kitty/pages/main_pages/home_page/home_page.dart';
 import 'package:kitty/repository/transaction_repository.dart';
 import 'package:kitty/resources/app_colors.dart';
 import 'package:kitty/resources/app_icons.dart';
-import 'package:kitty/services.dart/database.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class AddNew extends StatefulWidget {
@@ -24,8 +20,6 @@ class AddNew extends StatefulWidget {
 }
 
 class _AddNewState extends State<AddNew> {
-  void _onPressed() {}
-
   String? selectedIcon;
   String? selectedName;
   List<String> items = [
@@ -197,7 +191,7 @@ class _AddNewState extends State<AddNew> {
                               final List<CategoryModel> categorys =
                                   snapshot.data as List<CategoryModel>;
                               if (categorys.isEmpty) {
-                                return Text('Добавьте категорию');
+                                return const Text('Добавьте категорию');
                               } else {
                                 return GridView.builder(
                                     itemCount: categorys.length,
