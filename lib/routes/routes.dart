@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kitty/pages/main_of_main.dart';
+import 'package:kitty/pages/main_pages/add_categoty/add_categoty.dart';
+import 'package:kitty/pages/main_pages/add_new_page/add_new_page.dart';
 import 'package:kitty/pages/main_pages/home_page/home_page.dart';
 import 'package:kitty/pages/main_pages/report_page/report_page.dart';
 import 'package:kitty/pages/main_pages/settings_page/settings_page.dart';
@@ -31,6 +33,13 @@ class AppRouter {
 
       case SplashScreen.routeName:
         builder = (_) => const SplashScreen();
+        break;
+      case AddNew.routeName:
+        builder = (_) => const AddNew();
+        break;
+
+      case AddCategoryPage.routeName:
+        builder = (_) => const AddCategoryPage();
         break;
 
       default:
