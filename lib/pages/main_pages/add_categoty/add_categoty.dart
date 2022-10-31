@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/pages/main_pages/add_categoty/bloc/add_category_bloc.dart';
@@ -142,7 +140,7 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
                       //     },
                       //   ),
                       // )
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Expanded(
                         child: CustomScrollView(
                             // controller: scroll,
