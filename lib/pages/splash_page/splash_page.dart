@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:kitty/pages/main_of_main.dart';
+import 'package:kitty/resources/app_fonts.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -52,8 +53,7 @@ class _SplashScreenState extends State<SplashScreen> {
               const Text(
                 'Your expense manager',
                 style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w400,
+                  fontWeight: AppFonts.bold,
                   fontSize: 14,
                   letterSpacing: 0.25,
                   color: Colors.grey,
