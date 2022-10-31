@@ -51,7 +51,7 @@ class TopContainer extends StatelessWidget {
                       icon: SvgPicture.asset(AppIcons.balance)),
                   Text(
                     '${totalExpensive.first.expensive - totalExpensive.first.income}',
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.greenAccent,
                       fontWeight: FontWeight.w500,
                       fontSize: 12,
