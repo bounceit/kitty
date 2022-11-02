@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kitty/pages/main_pages/add_new_page/add_new_page.dart';
 import 'package:kitty/pages/main_pages/home_page/widgets/container_for_list.dart';
 import 'package:kitty/pages/main_pages/home_page/widgets/top_container.dart';
-import 'package:kitty/repository/transaction_repository.dart';
 import 'package:kitty/resources/app_icons.dart';
 import '../../../widgets/uncategorized/data_container.dart';
 
