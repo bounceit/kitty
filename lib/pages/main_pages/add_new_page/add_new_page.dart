@@ -214,7 +214,8 @@ class _AddNewState extends State<AddNew> {
                                               color: selectedIcon ==
                                                       categorys[index].icon
                                                   ? Colors.blue
-                                                  : Colors.amber[200],
+                                                  : Color(
+                                                      categorys[index].color),
                                             ),
                                             alignment:
                                                 AlignmentDirectional.center,
@@ -228,7 +229,6 @@ class _AddNewState extends State<AddNew> {
                                                       categorys[index].category;
                                                   selectedIcon =
                                                       categorys[index].icon;
-                                                  // print(selectedIcon);
                                                 });
                                               },
                                             ),
