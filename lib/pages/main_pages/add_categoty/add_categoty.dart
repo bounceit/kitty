@@ -38,8 +38,30 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
     AppIcons.pig,
     AppIcons.shop,
   ];
+  final List<Color> colors = [
+    Colors.red,
+    // Colors.blue,
+    AppColors.ball,
+    AppColors.car,
+    AppColors.city,
+    AppColors.coffe,
+    AppColors.computer,
+    AppColors.education,
+    AppColors.food,
+    AppColors.fuel,
+    AppColors.gratulation,
+    AppColors.hand,
+    AppColors.happy,
+    AppColors.health,
+    AppColors.human,
+    AppColors.liquor,
+    AppColors.money,
+    AppColors.pig,
+    // AppColors.shop,
+  ];
   String defalutIcon = AppIcons.cafe;
   String? selectedIcon;
+  Color selectedColor = Colors.transparent;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -69,11 +91,21 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
-                            onPressed: () {
-                              pc.open();
-                            },
-                            icon:
-                                SvgPicture.asset(selectedIcon ?? defalutIcon)),
+                          onPressed: () {
+                            pc.open();
+                          },
+                          icon: Container(
+                            alignment: AlignmentDirectional.center,
+                            height: 70,
+                            width: 70,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(150),
+                              color: Color(selectedColor.value),
+                            ),
+                            child:
+                                SvgPicture.asset(selectedIcon ?? defalutIcon),
+                          ),
+                        ),
                         const SizedBox(width: 10),
                         Expanded(
                           flex: 3,
@@ -97,7 +129,8 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
                         onPressed: () {
                           context.read<AddCategoryBloc>().add(AddCategoryEvent(
                               category: categoryName.text,
-                              selectedIcon: selectedIcon));
+                              selectedIcon: selectedIcon,
+                              selectedColor: selectedColor.value));
                           Navigator.pushNamedAndRemoveUntil(
                               context, HomePage.routeName, (route) => false);
                         },
@@ -129,17 +162,6 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
                         style: const TextStyle(
                             fontSize: 12, fontWeight: FontWeight.w500),
                       ),
-                      // GridView.count(
-                      //   crossAxisCount: 4,
-                      //   children: List.generate(
-                      //     icons.length,
-                      //     (index) {
-                      //       return Center(
-                      //         child: icons[index],
-                      //       );
-                      //     },
-                      //   ),
-                      // )
                       const SizedBox(height: 20),
                       Expanded(
                         child: CustomScrollView(
@@ -162,15 +184,15 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
                                             BorderRadius.circular(150),
                                         color: selectedIcon == icons[index]
                                             ? Colors.blue
-                                            : Colors.amber[200],
+                                            : colors[index],
                                       ),
                                       alignment: AlignmentDirectional.center,
                                       child: TextButton(
                                         child: SvgPicture.asset(icons[index]),
                                         onPressed: () {
                                           setState(() {
+                                            selectedColor = colors[index];
                                             selectedIcon = icons[index];
-                                            // print(selectedIcon);
                                           });
                                         },
                                       ),
