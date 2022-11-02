@@ -1,24 +1,24 @@
 class ReportModel {
   factory ReportModel.fromMap(Map<String, dynamic> json) => ReportModel(
-        title: json['title'] ?? '',
+        agrs: json['agrs'] ?? 0,
         totalAmount: json['amount'] ?? 0,
         categoryIcon: json['categoryIcon'] ?? '',
         categoryName: json['categoryName'] ?? '',
       );
   ReportModel({
-    this.title = '',
+    this.agrs = 0,
     this.totalAmount = 0,
     this.categoryIcon = '',
     this.categoryName = '',
   });
 
-  String title;
+  int agrs;
   int totalAmount;
   String categoryIcon;
   String categoryName;
 
   Map<String, dynamic> toMap() => {
-        'title': title,
+        // 'title': args,
         'amount': totalAmount,
         'categoryIcon': categoryIcon,
         'categoryName': categoryName,
