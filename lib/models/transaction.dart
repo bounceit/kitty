@@ -1,14 +1,15 @@
 class TransactionModel {
   factory TransactionModel.fromMap(Map<String, dynamic> json) =>
       TransactionModel(
-        id: json['id'] ?? 0,
-        title: json['title'] ?? '',
-        amount: json['amount'] ?? 0,
-        type: json['type'] ?? 0,
-        categoryIcon: json['categoryIcon'] ?? '',
-        categoryName: json['categoryName'] ?? '',
-      );
+          id: json['id'] ?? 0,
+          title: json['title'] ?? '',
+          amount: json['amount'] ?? 0,
+          type: json['type'] ?? 0,
+          categoryIcon: json['categoryIcon'] ?? '',
+          categoryName: json['categoryName'] ?? '',
+          categoryColor: json['categoryColor'] ?? 0);
   TransactionModel({
+    this.categoryColor = 0,
     this.id = 0,
     this.title = '',
     this.amount = 0,
@@ -23,6 +24,7 @@ class TransactionModel {
   String type;
   String categoryIcon;
   String categoryName;
+  int categoryColor;
 
   Map<String, dynamic> toMap() => {
         'id': id,
@@ -31,5 +33,6 @@ class TransactionModel {
         'type': type,
         'categoryIcon': categoryIcon,
         'categoryName': categoryName,
+        'categoryColor': categoryColor,
       };
 }
