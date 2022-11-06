@@ -5,9 +5,11 @@ class AddTransatcionEvent extends Equatable {
     required this.categoryName,
     required this.categoryIcon,
     required this.title,
+    required this.color,
     required this.amount,
     required this.type,
   });
+  final int color;
   final String title;
   final String categoryName;
   final String categoryIcon;
@@ -21,6 +23,7 @@ class AddTransatcionEvent extends Equatable {
         type,
         categoryIcon,
         categoryName,
+        color,
       ];
 }
 
