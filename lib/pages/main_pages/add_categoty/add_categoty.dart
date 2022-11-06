@@ -39,8 +39,6 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
     AppIcons.shop,
   ];
   final List<Color> colors = [
-    Colors.red,
-    // Colors.blue,
     AppColors.ball,
     AppColors.car,
     AppColors.city,
@@ -57,7 +55,7 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
     AppColors.liquor,
     AppColors.money,
     AppColors.pig,
-    // AppColors.shop,
+    AppColors.shop,
   ];
   String defalutIcon = AppIcons.cafe;
   String? selectedIcon;
