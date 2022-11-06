@@ -14,6 +14,7 @@ class KittyRepository {
         title: kitty.title,
         amount: kitty.amount,
         type: kitty.type,
+        categoryColor: kitty.categoryColor,
       ),
     );
   }
@@ -23,6 +24,7 @@ class KittyRepository {
       id: kittyCat.id,
       category: kittyCat.category,
       icon: kittyCat.icon,
+      color: kittyCat.color,
     ));
   }
 
@@ -41,7 +43,7 @@ class KittyRepository {
     return rep
         .map((e) => ReportModel(
               totalAmount: e.totalAmount,
-              title: e.title,
+              agrs: e.agrs,
               categoryIcon: e.categoryIcon,
               categoryName: e.categoryName,
             ))
@@ -58,6 +60,7 @@ class KittyRepository {
               type: e.type,
               categoryIcon: e.categoryIcon,
               categoryName: e.categoryName,
+              categoryColor: e.categoryColor,
             ))
         .toList();
   }
@@ -66,6 +69,7 @@ class KittyRepository {
     final cat = await DataHelper.db.getAllCategory();
     return cat
         .map((e) => CategoryModel(
+              color: e.color,
               category: e.category,
               icon: e.icon,
             ))
