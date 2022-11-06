@@ -20,6 +20,7 @@ class AddNew extends StatefulWidget {
 }
 
 class _AddNewState extends State<AddNew> {
+  int? selectedColor;
   String? selectedIcon;
   String? selectedName;
   List<String> items = [
@@ -136,6 +137,7 @@ class _AddNewState extends State<AddNew> {
                             final amount = int.parse(amountController.text);
                             final icon = selectedIcon!;
                             final name = selectedName!;
+                            final color = selectedColor!;
                             final TransactionType type;
                             if (dropdownvalue == 'Income') {
                               type = TransactionType.income;
@@ -150,6 +152,7 @@ class _AddNewState extends State<AddNew> {
                                   title: title,
                                   amount: amount,
                                   type: type,
+                                  color: color,
                                 ));
                             Navigator.pushNamedAndRemoveUntil(
                                 context, HomePage.routeName, (route) => false);
@@ -225,6 +228,8 @@ class _AddNewState extends State<AddNew> {
                                               ),
                                               onPressed: () {
                                                 setState(() {
+                                                  selectedColor =
+                                                      categorys[index].color;
                                                   selectedName =
                                                       categorys[index].category;
                                                   selectedIcon =
