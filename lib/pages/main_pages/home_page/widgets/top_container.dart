@@ -4,10 +4,21 @@ import 'package:kitty/models/summary_model.dart';
 import 'package:kitty/repository/transaction_repository.dart';
 import 'package:kitty/resources/app_icons.dart';
 
-class TopContainer extends StatelessWidget {
+class TopContainer extends StatefulWidget {
   const TopContainer({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<TopContainer> createState() => _TopContainerState();
+}
+
+class _TopContainerState extends State<TopContainer> {
+  int? totInc;
+  int? totExp;
+  int totBalance() {
+    return totInc! - totExp!;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +32,7 @@ class TopContainer extends StatelessWidget {
           }
           final List<SummaryModel> totalExpensive =
               snapshot.data as List<SummaryModel>;
-
+          totExp = totalExpensive.first.expensive;
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -50,7 +61,7 @@ class TopContainer extends StatelessWidget {
                       onPressed: () {},
                       icon: SvgPicture.asset(AppIcons.balance)),
                   Text(
-                    '${totalExpensive.first.expensive - totalExpensive.first.income}',
+                    '${totInc! - totExp!}',
                     style: const TextStyle(
                       color: Colors.greenAccent,
                       fontWeight: FontWeight.w500,
@@ -75,6 +86,8 @@ class TopContainer extends StatelessWidget {
                         }
                         final List<SummaryModel> totalIncome =
                             snapshot.data as List<SummaryModel>;
+
+                        totInc = totalIncome.first.income;
                         return Text(
                           totalIncome.first.income.toString(),
                           style: const TextStyle(
