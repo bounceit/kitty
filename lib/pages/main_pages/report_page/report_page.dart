@@ -102,20 +102,24 @@ class ReportPage extends StatelessWidget {
                               color: AppColors.appBarAddPage,
                               child: ListTile(
                                 trailing: Text(
-                                  '${transaction[index].totalAmount}',
+                                  '-${transaction[index].totalAmount}',
                                   style: const TextStyle(color: Colors.red),
                                 ),
                                 leading: Container(
-                                  height: 40,
-                                  width: 40,
+                                  // height: 40,
+                                  // width: 40,
                                   decoration: BoxDecoration(
                                       color: Colors.green[300],
                                       borderRadius: BorderRadius.circular(50)),
-                                  child: SvgPicture.asset(transaction[index]
-                                      .categoryIcon
-                                      .toString()),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: SvgPicture.asset(transaction[index]
+                                        .categoryIcon
+                                        .toString()),
+                                  ),
                                 ),
-                                subtitle: Text(transaction[index].title),
+                                subtitle: Text(
+                                    '${transaction[index].agrs.toString()} transactions'),
                                 title: Text(
                                   transaction[index].categoryName,
                                 ),
