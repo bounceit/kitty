@@ -38,6 +38,7 @@ class _TransactionBuilderState extends State<TransactionBuilder> {
                 final type = transaction[index].type;
                 if (type == 'Expensive') {
                   return Card(
+                    elevation: 0.0,
                     color: AppColors.appBarAddPage,
                     child: ListTile(
                       trailing: Text(
@@ -45,13 +46,16 @@ class _TransactionBuilderState extends State<TransactionBuilder> {
                         style: const TextStyle(color: Colors.red),
                       ),
                       leading: Container(
-                        height: 40,
-                        width: 40,
+                        // height: 40,
+                        // width: 40,
                         decoration: BoxDecoration(
-                            color: Colors.green[300],
+                            color: Color(transaction[index].categoryColor),
                             borderRadius: BorderRadius.circular(50)),
-                        child:
-                            SvgPicture.asset(transaction[index].categoryIcon),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child:
+                              SvgPicture.asset(transaction[index].categoryIcon),
+                        ),
                       ),
                       subtitle: Text(transaction[index].title.toString()),
                       title: Text(
@@ -68,7 +72,7 @@ class _TransactionBuilderState extends State<TransactionBuilder> {
                         height: 40,
                         width: 40,
                         decoration: BoxDecoration(
-                            color: Colors.green[300],
+                            color: Color(transaction[index].categoryColor),
                             borderRadius: BorderRadius.circular(50)),
                         child:
                             SvgPicture.asset(transaction[index].categoryIcon),
