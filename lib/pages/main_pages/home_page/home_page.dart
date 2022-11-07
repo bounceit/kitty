@@ -72,7 +72,7 @@ class HomePage extends StatelessWidget {
               children: [
                 const DataWidget(),
                 Container(
-                  height: screenHeight * 0.13,
+                  height: screenHeight * 0.14,
                   width: screenWeight * 0.9,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
