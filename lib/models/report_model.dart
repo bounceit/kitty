@@ -4,14 +4,16 @@ class ReportModel {
         totalAmount: json['amount'] ?? 0,
         categoryIcon: json['categoryIcon'] ?? '',
         categoryName: json['categoryName'] ?? '',
+        color: json['categoryColor'] ?? 0,
       );
   ReportModel({
+    this.color = 0,
     this.agrs = 0,
     this.totalAmount = 0,
     this.categoryIcon = '',
     this.categoryName = '',
   });
-
+  int color;
   int agrs;
   int totalAmount;
   String categoryIcon;
@@ -22,5 +24,6 @@ class ReportModel {
         'amount': totalAmount,
         'categoryIcon': categoryIcon,
         'categoryName': categoryName,
+        'categoryColor': color,
       };
 }
