@@ -8,10 +8,16 @@ import 'package:kitty/resources/app_icons.dart';
 
 import '../../../widgets/uncategorized/data_container.dart';
 
-class ReportPage extends StatelessWidget {
+class ReportPage extends StatefulWidget {
   const ReportPage({Key? key}) : super(key: key);
   static const routeName = '/report_page';
 
+  @override
+  State<ReportPage> createState() => _ReportPageState();
+}
+
+class _ReportPageState extends State<ReportPage> {
+  int? color;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,44 +52,38 @@ class ReportPage extends StatelessWidget {
               Text(
                 'Overview'.toUpperCase(),
               ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  children: const [
-                    Expanded(
-                      flex: 36,
-                      child: ColoredBox(
-                        color: Colors.amber,
-                        child: Text(''),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 30,
-                      child: ColoredBox(
-                        color: Colors.red,
-                        child: Text(''),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 20,
-                      child: ColoredBox(
-                        color: Colors.blue,
-                        child: Text(''),
-                      ),
-                    ),
-                    Expanded(
-                        flex: 10,
-                        child: ColoredBox(
-                          color: Colors.green,
-                          child: Text(''),
-                        )),
-                  ],
-                ),
+              Expanded(
+                child: FutureBuilder(
+                    future: KittyRepository().report(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState != ConnectionState.done) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      final List<ReportModel> transaction =
+                          snapshot.data as List<ReportModel>;
+
+                      return ListView.builder(
+                          shrinkWrap: false,
+                          addAutomaticKeepAlives: false,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: transaction.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              height: 2,
+                              width: MediaQuery.of(context).size.width,
+                              color: Color(transaction[index].color),
+                              child: Text(''),
+                            );
+                          });
+                    }),
               ),
               Text(
                 'details'.toUpperCase(),
               ),
               Expanded(
+                flex: 10,
                 child: FutureBuilder(
                     future: KittyRepository().report(),
                     builder: (context, snapshot) {
@@ -109,7 +109,7 @@ class ReportPage extends StatelessWidget {
                                   // height: 40,
                                   // width: 40,
                                   decoration: BoxDecoration(
-                                      color: Colors.green[300],
+                                      color: Color(transaction[index].color),
                                       borderRadius: BorderRadius.circular(50)),
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
