@@ -42,11 +42,11 @@ class KittyRepository {
     final rep = await DataHelper.db.report();
     return rep
         .map((e) => ReportModel(
-              totalAmount: e.totalAmount,
-              agrs: e.agrs,
-              categoryIcon: e.categoryIcon,
-              categoryName: e.categoryName,
-            ))
+            totalAmount: e.totalAmount,
+            agrs: e.agrs,
+            categoryIcon: e.categoryIcon,
+            categoryName: e.categoryName,
+            color: e.color))
         .toList();
   }
 
