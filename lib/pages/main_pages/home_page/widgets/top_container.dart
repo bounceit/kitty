@@ -14,11 +14,8 @@ class TopContainer extends StatefulWidget {
 }
 
 class _TopContainerState extends State<TopContainer> {
-  int? totInc;
-  int? totExp;
-  int totBalance() {
-    return totInc! - totExp!;
-  }
+  int totInc = 0;
+  int totExp = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +29,6 @@ class _TopContainerState extends State<TopContainer> {
           }
           final List<SummaryModel> totalExpensive =
               snapshot.data as List<SummaryModel>;
-          totExp = totalExpensive.first.expensive;
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -61,7 +57,7 @@ class _TopContainerState extends State<TopContainer> {
                       onPressed: () {},
                       icon: SvgPicture.asset(AppIcons.balance)),
                   Text(
-                    '${totInc! - totExp!}',
+                    '',
                     style: const TextStyle(
                       color: Colors.greenAccent,
                       fontWeight: FontWeight.w500,
@@ -87,7 +83,6 @@ class _TopContainerState extends State<TopContainer> {
                         final List<SummaryModel> totalIncome =
                             snapshot.data as List<SummaryModel>;
 
-                        totInc = totalIncome.first.income;
                         return Text(
                           totalIncome.first.income.toString(),
                           style: const TextStyle(
