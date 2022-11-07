@@ -13,7 +13,7 @@ class ContainerForList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: screenHeight * 0.3,
+        height: screenHeight * 0.25,
         width: screenWeight * 0.9,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
