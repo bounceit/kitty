@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:kitty/resources/app_icons.dart';
 
 class DataWidget extends StatelessWidget {
   const DataWidget({
@@ -12,7 +14,7 @@ class DataWidget extends StatelessWidget {
       children: [
         IconButton(
           onPressed: () {},
-          icon: Image.asset('assets/icons/Vector (4).png'),
+          icon: SvgPicture.asset(AppIcons.back),
         ),
         Container(
           height: 32,
@@ -22,15 +24,25 @@ class DataWidget extends StatelessWidget {
           child: Row(
             children: [
               IconButton(
-                onPressed: () {},
-                icon: Image.asset('assets/icons/Vector (6).png'),
+                onPressed: () {
+                  AlertDialog(
+                    title: Text('DataPicker'),
+                    actions: [TextButton(onPressed: () {}, child: Text('ok'))],
+                    content: Container(
+                      height: 100,
+                      width: 100,
+                      color: Colors.red,
+                      child: Text('1111'),
+                    ),
+                  );
+                },
+                icon: SvgPicture.asset(AppIcons.calendar),
               ),
               const Text('May, 2021')
             ],
           ),
         ),
-        IconButton(
-            onPressed: () {}, icon: Image.asset('assets/icons/Vector (5).png'))
+        IconButton(onPressed: () {}, icon: SvgPicture.asset(AppIcons.go))
       ],
     );
   }
