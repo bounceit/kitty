@@ -65,14 +65,14 @@ class _ReportPageState extends State<ReportPage> {
                           snapshot.data as List<ReportModel>;
 
                       return ListView.builder(
-                          shrinkWrap: false,
-                          addAutomaticKeepAlives: false,
+
                           scrollDirection: Axis.horizontal,
                           itemCount: transaction.length,
                           itemBuilder: (context, index) {
                             return Container(
                               height: 2,
-                              width: MediaQuery.of(context).size.width,
+                              width: MediaQuery.of(context).size.width /
+                                  transaction.length,
                               color: Color(transaction[index].color),
                               child: Text(''),
                             );
