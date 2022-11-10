@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kitty/recurses/app_icons.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kitty/resources/app_icons.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar(
@@ -72,7 +73,7 @@ class BottomNavBar extends StatelessWidget {
                               child: e.iconPath == AppIcons.settings
                                   ? Container(
                                       color: Colors.transparent,
-                                      child: Image.asset(
+                                      child: SvgPicture.asset(
                                         e.iconPath,
                                         fit: BoxFit.fill,
                                         color: i == currentTab
@@ -84,7 +85,7 @@ class BottomNavBar extends StatelessWidget {
                                       color: null,
                                       child: Padding(
                                         padding: const EdgeInsets.all(4.0),
-                                        child: Image.asset(
+                                        child: SvgPicture.asset(
                                           e.iconPath,
                                           fit: BoxFit.fill,
                                           color: i == currentTab
@@ -101,21 +102,13 @@ class BottomNavBar extends StatelessWidget {
                           Flexible(
                             flex: 4,
                             child: Text(e.title,
-                                style: e.title == 'Запись'
-                                    ? TextStyle(
-                                        color: i == currentTab
-                                            ? Colors.black
-                                            : Colors.transparent,
-                                        fontSize: 11.0,
-                                        height: 1.18,
-                                      )
-                                    : TextStyle(
-                                        color: i == currentTab
-                                            ? Colors.black
-                                            : Colors.grey[700],
-                                        fontSize: 11.0,
-                                        height: 1.18,
-                                      )),
+                                style: TextStyle(
+                                  color: i == currentTab
+                                      ? Colors.black
+                                      : Colors.grey[700],
+                                  fontSize: 11.0,
+                                  height: 1.18,
+                                )),
                           ),
                           const SizedBox(
                             height: 3.0,
