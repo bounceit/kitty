@@ -41,23 +41,6 @@ class HomePage extends StatelessWidget {
               children: [
                 IconButton(
                     onPressed: () {}, icon: SvgPicture.asset(AppIcons.search)),
-                const SizedBox(width: 20),
-                Container(
-                  decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.circular(50)),
-                  height: 24,
-                  width: 24,
-                  child: Text(
-                    'M',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.inter(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
-                    ),
-                  ),
-                ),
                 const SizedBox(
                   width: 32,
                 )
