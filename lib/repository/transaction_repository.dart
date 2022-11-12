@@ -29,8 +29,9 @@ class KittyRepository {
   }
 
   Future<List<SummaryModel>> totalIncome() async {
-    var totalBalanses = await DataHelper.db.income();
-    return totalBalanses;
+    final totalBalanses = await DataHelper.db.income();
+
+    return totalBalanses.map((e) => SummaryModel(income: e.income)).toList();
   }
 
   Future<List<SummaryModel>> totalExpense() async {
