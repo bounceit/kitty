@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class CategoryModel {
   factory CategoryModel.fromMap(Map<String, dynamic> json) => CategoryModel(
       category: json['categoryName'] ?? 0,
