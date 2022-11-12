@@ -93,16 +93,18 @@ class DataHelper {
     final db = await dataBase;
     var result = await db.rawQuery(
         'SELECT SUM(amount) AS TOTALINC FROM KITTY WHERE Type = "Income"');
-
-    return result.map((e) => SummaryModel.fromMap(e)).toList();
+    List<SummaryModel> listInc =
+        result.map((e) => SummaryModel.fromMap(e)).toList();
+    return listInc;
   }
 
   Future<List<SummaryModel>> expense() async {
     final db = await dataBase;
     var resultExp = await db.rawQuery(
         'SELECT SUM(amount) AS TOTALEXP FROM KITTY WHERE Type = "Expensive" ');
-
-    return resultExp.map((e) => SummaryModel.fromMap(e)).toList();
+    List<SummaryModel> listExp =
+        resultExp.map((e) => SummaryModel.fromMap(e)).toList();
+    return listExp;
   }
 
   Future<List<ReportModel>> report() async {
