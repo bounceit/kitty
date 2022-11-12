@@ -14,7 +14,7 @@ class TopContainer extends StatefulWidget {
 }
 
 class _TopContainerState extends State<TopContainer> {
-  int totInc = 0;
+  // Future<List> totalInc = KittyRepository().totalIncome();
   int totExp = 0;
 
   @override
@@ -56,9 +56,9 @@ class _TopContainerState extends State<TopContainer> {
                   IconButton(
                       onPressed: () {},
                       icon: SvgPicture.asset(AppIcons.balance)),
-                  Text(
-                    '',
-                    style: const TextStyle(
+                  const Text(
+                    '0',
+                    style: TextStyle(
                       color: Colors.greenAccent,
                       fontWeight: FontWeight.w500,
                       fontSize: 12,
@@ -70,7 +70,9 @@ class _TopContainerState extends State<TopContainer> {
               Column(
                 children: [
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        print(KittyRepository().totalIncome());
+                      },
                       icon: SvgPicture.asset(AppIcons.income)),
                   FutureBuilder(
                       future: KittyRepository().totalIncome(),
