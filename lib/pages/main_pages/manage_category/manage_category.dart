@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/models/category_model.dart';
 import 'package:kitty/repository/transaction_repository.dart';
@@ -58,7 +56,7 @@ class _ManageCategoryState extends State<ManageCategory> {
                         Text(categorys[index].category),
                         TextButton(
                           onPressed: () {},
-                          child: Text('Edit'),
+                          child: const Text('Edit'),
                         ),
                       ],
                     ),
