@@ -5,6 +5,7 @@ class TransactionModel {
           title: json['title'] ?? '',
           amount: json['amount'] ?? 0,
           type: json['type'] ?? 0,
+          data: json['dateTime'] ?? 0,
           categoryIcon: json['categoryIcon'] ?? '',
           categoryName: json['categoryName'] ?? '',
           categoryColor: json['categoryColor'] ?? 0);
@@ -16,6 +17,7 @@ class TransactionModel {
     this.type = '',
     this.categoryIcon = '',
     this.categoryName = '',
+    this.data = 0,
   });
 
   int id;
@@ -25,6 +27,7 @@ class TransactionModel {
   String categoryIcon;
   String categoryName;
   int categoryColor;
+  int data;
 
   Map<String, dynamic> toMap() => {
         'id': id,
@@ -34,5 +37,6 @@ class TransactionModel {
         'categoryIcon': categoryIcon,
         'categoryName': categoryName,
         'categoryColor': categoryColor,
+        'dateTime': data,
       };
 }
