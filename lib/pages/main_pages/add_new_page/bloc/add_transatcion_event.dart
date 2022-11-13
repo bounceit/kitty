@@ -2,6 +2,7 @@ part of 'add_transatcion_bloc.dart';
 
 class AddTransatcionEvent extends Equatable {
   const AddTransatcionEvent({
+    required this.data,
     required this.categoryName,
     required this.categoryIcon,
     required this.title,
@@ -15,6 +16,7 @@ class AddTransatcionEvent extends Equatable {
   final String categoryIcon;
   final int amount;
   final TransactionType type;
+  final int data;
 
   @override
   List<Object> get props => [
@@ -24,6 +26,7 @@ class AddTransatcionEvent extends Equatable {
         categoryIcon,
         categoryName,
         color,
+        data,
       ];
 }
 
