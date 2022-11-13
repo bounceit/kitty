@@ -153,6 +153,7 @@ class _AddNewState extends State<AddNew> {
                                   amount: amount,
                                   type: type,
                                   color: color,
+                                  data: DateTime.now().millisecondsSinceEpoch,
                                 ));
                             Navigator.pushNamedAndRemoveUntil(
                                 context, HomePage.routeName, (route) => false);
