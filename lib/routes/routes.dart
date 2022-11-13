@@ -5,6 +5,7 @@ import 'package:kitty/pages/main_pages/add_new_page/add_new_page.dart';
 import 'package:kitty/pages/main_pages/home_page/home_page.dart';
 import 'package:kitty/pages/main_pages/manage_category/manage_category.dart';
 import 'package:kitty/pages/main_pages/report_page/report_page.dart';
+import 'package:kitty/pages/main_pages/search_page/search_page.dart';
 import 'package:kitty/pages/main_pages/settings_page/settings_page.dart';
 import 'package:kitty/pages/splash_page/splash_page.dart';
 
@@ -18,6 +19,9 @@ class AppRouter {
     switch (settings.name) {
       case HomePage.routeName:
         builder = (_) => const HomePage();
+        break;
+      case SearchPage.routeName:
+        builder = (_) => const SearchPage();
         break;
 
       case MainPage.routeName:
