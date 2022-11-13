@@ -31,7 +31,7 @@ class KittyRepository {
   Future<List<SummaryModel>> totalIncome() async {
     final totalBalanses = await DataHelper.db.income();
 
-    return totalBalanses.map((e) => SummaryModel(income: e.income)).toList();
+    return totalBalanses;
   }
 
   Future<List<SummaryModel>> totalExpense() async {
@@ -77,3 +77,5 @@ class KittyRepository {
         .toList();
   }
 }
+
+class NetworkError extends Error {}
