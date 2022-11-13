@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kitty/pages/main_pages/add_new_page/add_new_page.dart';
 import 'package:kitty/pages/main_pages/home_page/widgets/container_for_list.dart';
 import 'package:kitty/pages/main_pages/home_page/widgets/top_container.dart';
+import 'package:kitty/pages/main_pages/search_page/search_page.dart';
 import 'package:kitty/resources/app_icons.dart';
 import '../../../widgets/uncategorized/data_container.dart';
 
@@ -40,7 +41,10 @@ class HomePage extends StatelessWidget {
             Row(
               children: [
                 IconButton(
-                    onPressed: () {}, icon: SvgPicture.asset(AppIcons.search)),
+                    onPressed: () {
+                      Navigator.pushNamed(context, SearchPage.routeName);
+                    },
+                    icon: SvgPicture.asset(AppIcons.search)),
                 const SizedBox(
                   width: 32,
                 )
@@ -53,7 +57,9 @@ class HomePage extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const DataWidget(),
+                DataWidget(
+                  data: '',
+                ),
                 Container(
                   height: screenHeight * 0.14,
                   width: screenWeight * 0.9,
