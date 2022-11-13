@@ -31,23 +31,21 @@ class _TransactionBuilderState extends State<TransactionBuilder> {
           }
           final List<TransactionModel> transaction =
               snapshot.data as List<TransactionModel>;
-
           return ListView.builder(
               itemCount: transaction.length,
               itemBuilder: (context, index) {
                 final type = transaction[index].type;
-                if (type == 'Expensive') {
+                final data = transaction[index].data;
+                if (type == 'Expensive' || data == DateTime.now()) {
                   return Card(
                     elevation: 0.0,
-                    color: AppColors.appBarAddPage,
+                    color: Colors.transparent,
                     child: ListTile(
                       trailing: Text(
                         '-${transaction[index].amount}',
                         style: const TextStyle(color: Colors.red),
                       ),
                       leading: Container(
-                        // height: 40,
-                        // width: 40,
                         decoration: BoxDecoration(
                             color: Color(transaction[index].categoryColor),
                             borderRadius: BorderRadius.circular(50)),
@@ -65,17 +63,19 @@ class _TransactionBuilderState extends State<TransactionBuilder> {
                   );
                 } else {
                   return Card(
-                    color: AppColors.appBarAddPage,
+                    color: Colors.transparent,
+                    elevation: 0.0,
                     child: ListTile(
                       trailing: Text(transaction[index].amount.toString()),
                       leading: Container(
-                        height: 40,
-                        width: 40,
                         decoration: BoxDecoration(
                             color: Color(transaction[index].categoryColor),
                             borderRadius: BorderRadius.circular(50)),
-                        child:
-                            SvgPicture.asset(transaction[index].categoryIcon),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child:
+                              SvgPicture.asset(transaction[index].categoryIcon),
+                        ),
                       ),
                       subtitle: Text(transaction[index].title.toString()),
                       title: Text(transaction[index].categoryName),
