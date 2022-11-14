@@ -36,7 +36,10 @@ class _TransactionBuilderState extends State<TransactionBuilder> {
               itemBuilder: (context, index) {
                 final type = transaction[index].type;
                 final data = transaction[index].data;
-                if (type == 'Expensive' || data == DateTime.now()) {
+                final currentData = DateTime.fromMillisecondsSinceEpoch(data);
+                if (type == 'Expensive' ||
+                    DateTime.fromMillisecondsSinceEpoch(data) ==
+                        DateTime.now().millisecondsSinceEpoch) {
                   return Card(
                     elevation: 0.0,
                     color: Colors.transparent,
