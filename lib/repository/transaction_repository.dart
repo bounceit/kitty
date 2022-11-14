@@ -76,6 +76,11 @@ class KittyRepository {
             ))
         .toList();
   }
+
+  Future<List<Map<String, dynamic>>> search(String text) async {
+    final search = await DataHelper.db.search(text);
+    return search.toList();
+  }
 }
 
 class NetworkError extends Error {}
