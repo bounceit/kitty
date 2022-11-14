@@ -43,6 +43,7 @@ dependencies:
   bloc: ^8.1.0
   equatable: ^2.0.5
   sliding_up_panel: ^2.0.0+1
+  month_year_picker: ^0.2.0+3
 
 dev_dependencies:
   flutter_test:
