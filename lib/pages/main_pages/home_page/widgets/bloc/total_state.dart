@@ -21,3 +21,5 @@ class TotalError extends TotalState {
   const TotalError(this.message);
   final String? message;
 }
+
+enum BlocStatus { initial, loading, sucsses, error }
