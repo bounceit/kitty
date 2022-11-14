@@ -7,9 +7,11 @@ import 'package:kitty/resources/app_icons.dart';
 import 'package:month_year_picker/month_year_picker.dart';
 
 class DataWidget extends StatefulWidget {
-  const DataWidget({
+  DataWidget({
+    required this.data,
     Key? key,
   }) : super(key: key);
+  String data = _DataWidgetState()._selectedData;
 
   @override
   State<DataWidget> createState() => _DataWidgetState();
