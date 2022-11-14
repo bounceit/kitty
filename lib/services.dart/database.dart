@@ -37,7 +37,8 @@ class DataHelper {
           'type TEXT,'
           'categoryIcon TEXT,'
           'categoryName TEXT,'
-          'categoryColor INTEGER'
+          'categoryColor INTEGER,'
+          'dateTime INTEGER'
           ')');
     });
   }
@@ -59,8 +60,8 @@ class DataHelper {
   Future<int> addTranscaction(TransactionModel kitty) async {
     final db = await dataBase;
     var raw = await db.rawInsert(
-      'INSERT Into KITTY (id, title, amount, type, categoryIcon, categoryName, categoryColor )'
-      'VALUES (?,?,?,?,?,?,?)',
+      'INSERT Into KITTY (id, title, amount, type, categoryIcon, categoryName, categoryColor, dateTime)'
+      'VALUES (?,?,?,?,?,?,?,?)',
       [
         kitty.id,
         kitty.title,
@@ -69,6 +70,7 @@ class DataHelper {
         kitty.categoryIcon,
         kitty.categoryName,
         kitty.categoryColor,
+        kitty.data,
       ],
     );
     return raw;
@@ -128,5 +130,25 @@ class DataHelper {
     List<CategoryModel> listCategory =
         cat.map((e) => CategoryModel.fromMap(e)).toList();
     return listCategory;
+  }
+
+  Future<List<Map<String, dynamic>>> getDateRangeData(
+      String tableName, String fromDate, String toDate) async {
+    final db = await dataBase;
+    return await db.query('KITTY',
+        where: 'dateTime BETWEEN ? AND ?',
+        whereArgs: ['$fromDate 00:00:00', '$toDate 23:59:59']);
+  }
+
+  Future<List<Map<String, dynamic>>> getData(String tableName) async {
+    final db = await dataBase;
+    return await db.query('KITTY', orderBy: 'dateTime DESC');
+  }
+
+  Future<List<Map<String, dynamic>>> search(String text) async {
+    final db = await dataBase;
+    var result =
+        await db.rawQuery('SELECT * FROM KITTY WHERE title LIKE "%${text}%"  ');
+    return result.toList();
   }
 }
