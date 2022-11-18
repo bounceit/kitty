@@ -14,13 +14,15 @@ class AddTransatcionBloc extends Bloc<AddTransatcionEvent, void> {
       switch (event.type) {
         case TransactionType.income:
           final kittys = TransactionModel(
-              id: Random().nextInt(999999),
-              categoryIcon: event.categoryIcon,
-              categoryName: event.categoryName,
-              title: event.title,
-              amount: event.amount,
-              type: 'Income',
-              categoryColor: event.color);
+            id: Random().nextInt(999999),
+            categoryIcon: event.categoryIcon,
+            categoryName: event.categoryName,
+            title: event.title,
+            amount: event.amount,
+            type: 'Income',
+            categoryColor: event.color,
+            data: event.data,
+          );
 
           // DataHelper.db.income();
           KittyRepository().addKitty(kittys);
@@ -34,6 +36,7 @@ class AddTransatcionBloc extends Bloc<AddTransatcionEvent, void> {
             amount: event.amount,
             categoryColor: event.color,
             type: 'Expensive',
+            data: event.data,
           );
 
           // DataHelper.db.expense();
