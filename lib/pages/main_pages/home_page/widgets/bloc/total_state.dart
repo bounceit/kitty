@@ -12,7 +12,10 @@ class TotalInitial extends TotalState {}
 class TotalLoading extends TotalState {}
 
 class TotalLoaded extends TotalState {
-  const TotalLoaded({required this.summuryModel, required this.summaryExp});
+  const TotalLoaded({
+    required this.summuryModel,
+    required this.summaryExp,
+  });
   final SummaryModel summuryModel;
   final SummaryModel summaryExp;
 }
