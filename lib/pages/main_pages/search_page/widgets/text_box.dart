@@ -20,9 +20,8 @@ class TextBox extends StatelessWidget {
               fillColor: AppColors.appBarAddPage),
           onChanged: (String text) async {
             var res = await KittyRepository().search(text);
-
-            print(res);
           }),
+          
     );
   }
 }
