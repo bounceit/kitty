@@ -15,6 +15,7 @@ class KittyRepository {
         amount: kitty.amount,
         type: kitty.type,
         categoryColor: kitty.categoryColor,
+        data: kitty.data,
       ),
     );
   }
@@ -62,6 +63,7 @@ class KittyRepository {
               categoryIcon: e.categoryIcon,
               categoryName: e.categoryName,
               categoryColor: e.categoryColor,
+              data: e.data,
             ))
         .toList();
   }
