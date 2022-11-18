@@ -38,4 +38,5 @@ class AppIcons {
   static const String quetions = '$path/quetions.svg';
   static const String logout = '$path/logout.svg';
   static const String dragCat = '$path/drag_category.svg';
+  static const String done = '$path/done.svg';
 }
