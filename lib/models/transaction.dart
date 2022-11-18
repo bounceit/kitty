@@ -5,7 +5,7 @@ class TransactionModel {
           title: json['title'] ?? '',
           amount: json['amount'] ?? 0,
           type: json['type'] ?? 0,
-          data: json['dateTime'] ?? 0,
+          data: json['dateTime'] ?? 1,
           categoryIcon: json['categoryIcon'] ?? '',
           categoryName: json['categoryName'] ?? '',
           categoryColor: json['categoryColor'] ?? 0);
