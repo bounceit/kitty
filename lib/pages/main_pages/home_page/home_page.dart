@@ -8,15 +8,28 @@ import 'package:kitty/pages/main_pages/search_page/search_page.dart';
 import 'package:kitty/resources/app_icons.dart';
 import '../../../widgets/uncategorized/data_container.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  HomePage({Key? key}) : super(key: key);
   static const routeName = '/';
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  String data = DataWidgetState.selectedData;
+  void changeData(String value) {
+    setState(() {
+      data = value;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
     final double screenWeight = MediaQuery.of(context).size.width;
     return Scaffold(
+        key: ValueKey(data),
         appBar: AppBar(
           title: Row(
             children: [
@@ -55,11 +68,10 @@ class HomePage extends StatelessWidget {
         body: Stack(
           children: [
             Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                DataWidget(
-                  data: '',
-                ),
+                DataWidget(),
                 Container(
                   height: screenHeight * 0.14,
                   width: screenWeight * 0.9,
@@ -72,10 +84,12 @@ class HomePage extends StatelessWidget {
                   ),
                   child: const TopContainer(),
                 ),
-                ContainerForList(
-                  screenHeight: screenHeight,
-                  screenWeight: screenWeight,
-                ),
+                data == 'Today' || data == 'Nov'
+                    ? ContainerForList(
+                        screenHeight: screenHeight,
+                        screenWeight: screenWeight,
+                      )
+                    : Container(),
                 ContainerForList(
                   screenHeight: screenHeight,
                   screenWeight: screenWeight,
