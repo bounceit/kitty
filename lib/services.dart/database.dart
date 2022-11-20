@@ -148,7 +148,7 @@ class DataHelper {
   Future<List<Map<String, dynamic>>> search(String text) async {
     final db = await dataBase;
     var result =
-        await db.rawQuery('SELECT * FROM KITTY WHERE title LIKE "%${text}%"  ');
+        await db.rawQuery('SELECT * FROM KITTY WHERE title LIKE "%$text%"  ');
     return result.toList();
   }
 }
