@@ -36,10 +36,9 @@ class _TransactionBuilderState extends State<TransactionBuilder> {
               itemBuilder: (context, index) {
                 final type = transaction[index].type;
                 final data = transaction[index].data;
-                final currentData = DateTime.now().millisecondsSinceEpoch;
+                final currentData = DateTime.now().day;
                 final transactionData =
-                    DateTime.fromMillisecondsSinceEpoch(data)
-                        .millisecondsSinceEpoch;
+                    DateTime.fromMillisecondsSinceEpoch(data).day;
                 if (type == 'Expensive' && transactionData == currentData) {
                   return Card(
                     elevation: 0.0,
@@ -65,7 +64,7 @@ class _TransactionBuilderState extends State<TransactionBuilder> {
                       ),
                     ),
                   );
-                } else {
+                } else if (type == 'Income') {
                   return Card(
                     color: Colors.transparent,
                     elevation: 0.0,
@@ -86,6 +85,7 @@ class _TransactionBuilderState extends State<TransactionBuilder> {
                     ),
                   );
                 }
+                return Container();
               });
         });
   }
