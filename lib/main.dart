@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:kitty/pages/splash_page/splash_page.dart';
 import 'package:kitty/resources/app_theme.dart';
 import 'package:kitty/routes/routes.dart';
+import 'package:kitty/widgets/uncategorized/data_picker/bloc/main_screen_bloc.dart';
 import 'package:month_year_picker/month_year_picker.dart';
 
 void main() async {
@@ -23,15 +25,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      localizationsDelegates: const [
-        GlobalWidgetsLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        MonthYearPickerLocalizations.delegate,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<MainScreenBloc>(create: (context) => MainScreenBloc()),
       ],
-      theme: AppThemes.light(),
-      initialRoute: SplashScreen.routeName,
-      onGenerateRoute: AppRouter.generateRoute,
+      child: MaterialApp(
+        localizationsDelegates: const [
+          GlobalWidgetsLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          MonthYearPickerLocalizations.delegate,
+        ],
+        theme: AppThemes.light(),
+        initialRoute: SplashScreen.routeName,
+        onGenerateRoute: AppRouter.generateRoute,
+      ),
     );
   }
 }
