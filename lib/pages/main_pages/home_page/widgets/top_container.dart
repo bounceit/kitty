@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/models/summary_model.dart';
 import 'package:kitty/pages/main_pages/home_page/widgets/bloc/total_bloc.dart';
-import 'package:kitty/repository/transaction_repository.dart';
 import 'package:kitty/resources/app_icons.dart';
 
 class TopContainer extends StatefulWidget {
