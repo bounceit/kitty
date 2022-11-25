@@ -1,11 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:kitty/models/category_model.dart';
-import 'package:kitty/models/transaction.dart';
 import 'package:kitty/repository/transaction_repository.dart';
-
-import '../../widgets/text_box.dart';
-
 part 'search_event.dart';
 part 'search_state.dart';
 
@@ -22,7 +18,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           transactionModel: mList,
         ));
       } on NetworkError {
-        emit(SearchError("Failed to fetch data. is your device online?"));
+        emit(const SearchError('Failed to fetch data. is your device online?'));
       }
     });
   }
