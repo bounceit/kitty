@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:kitty/models/report_model.dart';
 import 'package:kitty/repository/transaction_repository.dart';
 
 part 'report_event.dart';
@@ -18,8 +17,6 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
                 child: CircularProgressIndicator(),
               );
             }
-            final List<ReportModel> transaction =
-                snapshot.data as List<ReportModel>;
             return Container();
           });
     });
