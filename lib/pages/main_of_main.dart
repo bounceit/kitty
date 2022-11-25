@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kitty/blocs/bloc_navigations/navigation_bloc.dart';
 import 'package:kitty/pages/main_pages/home_page/home_page.dart';
 import 'package:kitty/pages/main_pages/report_page/report_page.dart';
+import 'package:kitty/pages/main_pages/search_page/widgets/bloc/transaction_bloc.dart';
 import 'package:kitty/pages/main_pages/settings_page/settings_page.dart';
+import 'package:kitty/widgets/uncategorized/data_picker/bloc/main_screen_bloc.dart';
 
 import '../blocs/bloc_navigations/navigation_event.dart';
 import '../blocs/bloc_navigations/navigation_state.dart';
@@ -56,8 +58,14 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider<MainScreenBloc>(
+          create: (_) => MainScreenBloc(),
+        ),
         BlocProvider<NavigationBloc>(
           create: (_) => NavigationBloc(),
+        ),
+        BlocProvider<TransactionBloc>(
+          create: (_) => TransactionBloc(),
         ),
       ],
       child: BlocConsumer<NavigationBloc, NavigationState>(
