@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/models/transaction.dart';
 import 'package:kitty/repository/transaction_repository.dart';
-import 'package:kitty/resources/app_colors.dart';
 
 class TransactionBuilder extends StatefulWidget {
   const TransactionBuilder({Key? key}) : super(key: key);
