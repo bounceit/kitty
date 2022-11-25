@@ -21,7 +21,7 @@ class TotalBloc extends Bloc<TotalEvent, TotalState> {
           summaryExp: eList.first,
         ));
       } on NetworkError {
-        emit(TotalError("Failed to fetch data. is your device online?"));
+        emit(const TotalError('Failed to fetch data. is your device online?'));
       }
     });
   }
