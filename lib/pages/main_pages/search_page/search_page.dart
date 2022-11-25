@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kitty/pages/main_pages/search_page/bloc/bloc_category/search_bloc.dart';
 import 'package:kitty/pages/main_pages/search_page/widgets/list_search_category.dart';
+import 'package:kitty/pages/main_pages/search_page/widgets/list_search_transaction.dart';
 import 'package:kitty/pages/main_pages/search_page/widgets/text_box.dart';
-import 'package:kitty/resources/app_colors.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class _SearchPageState extends State<SearchPage> {
         toolbarHeight: 50,
         iconTheme: IconThemeData(color: Colors.grey.shade400),
         backgroundColor: Colors.white,
-        title: TextBox(),
+        title: const TextBox(),
       ),
       body: BlocProvider(
         create: (context) => SearchBloc()
@@ -65,9 +65,9 @@ class _SearchPageState extends State<SearchPage> {
                         ),
                       ),
                     ),
-                    Expanded(
+                    const Expanded(
                       flex: 7,
-                      child: Container(),
+                      child: ListTransactions(),
                     )
                   ],
                 );
