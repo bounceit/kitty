@@ -1,24 +1,25 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kitty/resources/app_colors.dart';
 import 'package:kitty/resources/app_icons.dart';
-import 'package:month_year_picker/month_year_picker.dart';
 
 class DataWidget extends StatefulWidget {
-  DataWidget({
-    required this.data,
+  const DataWidget({
     Key? key,
   }) : super(key: key);
-  String data = _DataWidgetState()._selectedData;
 
   @override
-  State<DataWidget> createState() => _DataWidgetState();
+  State<DataWidget> createState() => DataWidgetState();
 }
 
-class _DataWidgetState extends State<DataWidget> {
-  String _selectedData = 'Today';
+class DataWidgetState extends State<DataWidget> {
+  @override
+  void initState() {
+    super.initState();
+    selectedData;
+  }
+
+  static var selectedData = 'Today';
   final List<String> _mounths = [
     'Jan',
     'Feb',
@@ -40,7 +41,7 @@ class _DataWidgetState extends State<DataWidget> {
       children: [
         IconButton(
           onPressed: () {
-            _selectedData = _mounths.first;
+            selectedData == _mounths.first;
           },
           icon: SvgPicture.asset(AppIcons.back),
         ),
@@ -48,7 +49,9 @@ class _DataWidgetState extends State<DataWidget> {
           height: 32,
           width: 150,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(25), color: Colors.grey[200]),
+            borderRadius: BorderRadius.circular(25),
+            color: Colors.grey[200],
+          ),
           child: Row(
             children: [
               IconButton(
@@ -58,13 +61,19 @@ class _DataWidgetState extends State<DataWidget> {
                       context: context,
                       barrierDismissible: true,
                       barrierLabel: '',
-                      transitionDuration: const Duration(milliseconds: 200),
+                      transitionDuration: const Duration(
+                        milliseconds: 200,
+                      ),
                       pageBuilder: (BuildContext context,
                           Animation<double> animation,
                           Animation<double> secondaryAnimation) {
                         return Padding(
-                          padding: EdgeInsets.fromLTRB(30, 120, 30,
-                              MediaQuery.of(context).size.height * 0.5),
+                          padding: EdgeInsets.fromLTRB(
+                            30,
+                            120,
+                            30,
+                            MediaQuery.of(context).size.height * 0.5,
+                          ),
                           child: Container(
                             decoration: BoxDecoration(
                                 boxShadow: [
@@ -103,7 +112,7 @@ class _DataWidgetState extends State<DataWidget> {
                                                 12, 5, 12, 5)),
                                         onPressed: () {
                                           setState(() {
-                                            _selectedData = _mounths[index];
+                                            selectedData = _mounths[index];
                                           });
                                         },
                                         child: Text(_mounths[index],
@@ -123,14 +132,14 @@ class _DataWidgetState extends State<DataWidget> {
                 },
                 icon: SvgPicture.asset(AppIcons.calendar),
               ),
-              Text('$_selectedData 2022'),
+              Text('$selectedData 2022'),
             ],
           ),
         ),
         IconButton(
             onPressed: () {
               setState(() {
-                _selectedData = _mounths.last;
+                selectedData = _mounths.last;
               });
             },
             icon: SvgPicture.asset(AppIcons.go))
