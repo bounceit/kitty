@@ -145,10 +145,12 @@ class DataHelper {
     return await db.query('KITTY', orderBy: 'dateTime DESC');
   }
 
-  Future<List<Map<String, dynamic>>> search(String text) async {
+  Future<List<TransactionModel>> search(String text) async {
     final db = await dataBase;
     var result =
         await db.rawQuery('SELECT * FROM KITTY WHERE title LIKE "%$text%"  ');
-    return result.toList();
+    List<TransactionModel> list =
+        result.map((e) => TransactionModel.fromMap(e)).toList();
+    return list;
   }
 }
