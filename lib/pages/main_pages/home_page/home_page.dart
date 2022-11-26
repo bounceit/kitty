@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kitty/pages/main_pages/add_new_page/add_new_page.dart';
 import 'package:kitty/pages/main_pages/home_page/widgets/container_for_list.dart';
 import 'package:kitty/pages/main_pages/home_page/widgets/top_container.dart';
+import 'package:kitty/pages/main_pages/home_page/widgets/transaction_builder.dart';
 import 'package:kitty/pages/main_pages/search_page/search_page.dart';
 import 'package:kitty/resources/app_icons.dart';
 import 'package:kitty/widgets/uncategorized/data_picker/bloc/main_screen_bloc.dart';
@@ -93,11 +94,14 @@ class _HomePageState extends State<HomePage> {
                         ? ContainerForList(
                             screenHeight: screenHeight,
                             screenWeight: screenWeight,
+                            child: TodayTransactionBuilder(
+                                child: const TransactionBuilder()),
                           )
                         : Container(),
                     ContainerForList(
                       screenHeight: screenHeight,
                       screenWeight: screenWeight,
+                      child: const TransactionBuilder(),
                     ),
                   ],
                 ),
