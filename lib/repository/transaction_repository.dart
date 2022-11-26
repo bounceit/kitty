@@ -79,9 +79,20 @@ class KittyRepository {
         .toList();
   }
 
-  Future<List<Map<String, dynamic>>> search(String text) async {
+  Future<List<TransactionModel>> search(String text) async {
     final search = await DataHelper.db.search(text);
-    return search.toList();
+    return search
+        .map((e) => TransactionModel(
+              id: e.id,
+              amount: e.amount,
+              title: e.title,
+              type: e.type,
+              categoryIcon: e.categoryIcon,
+              categoryName: e.categoryName,
+              categoryColor: e.categoryColor,
+              data: e.data,
+            ))
+        .toList();
   }
 }
 
