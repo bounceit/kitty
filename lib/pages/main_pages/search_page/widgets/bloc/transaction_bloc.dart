@@ -8,14 +8,14 @@ part 'transaction_state.dart';
 
 class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
   TransactionBloc() : super(const TransactionState()) {
-    // on<InitTransaction>((event, emit) async {
-    //   final getAll = await KittyRepository().getAlltranzaction();
-    //   emit(
-    //     state.copyWith(
-    //       transactions: getAll,
-    //     ),
-    //   );
-    // });
+    on<InitTransaction>((event, emit) async {
+      final getAll = await KittyRepository().getAlltranzaction();
+      emit(
+        state.copyWith(
+          transactions: getAll,
+        ),
+      );
+    });
     on<SearchTransaction>((event, emit) async {
       final getAllsearch = await KittyRepository().search(event.text);
       emit(
