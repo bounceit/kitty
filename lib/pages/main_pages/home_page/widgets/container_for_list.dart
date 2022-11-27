@@ -55,10 +55,19 @@ class TodayTransactionBuilder extends StatelessWidget {
                 BlocBuilder<TotalBloc, TotalState>(
                   builder: (context, state) {
                     if (state is TotalLoaded) {
-                      return Text(
-                        state.summaryExp.expensive.toString(),
-                        style: TextStyle(color: Colors.grey.shade500),
-                      );
+                      final balance = state.summuryModel.income -
+                          state.summaryExp.expensive;
+                      if (balance > 0) {
+                        return Text(
+                          '+$balance',
+                          style: TextStyle(color: Colors.grey.shade500),
+                        );
+                      } else {
+                        return Text(
+                          '$balance',
+                          style: TextStyle(color: Colors.grey.shade500),
+                        );
+                      }
                     }
                     return Container();
                   },
