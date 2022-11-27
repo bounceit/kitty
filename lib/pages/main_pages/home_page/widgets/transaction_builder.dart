@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/models/transaction.dart';
+import 'package:kitty/pages/main_pages/search_page/widgets/bloc/transaction_bloc.dart';
 import 'package:kitty/repository/transaction_repository.dart';
 
 class TransactionBuilder extends StatefulWidget {
@@ -20,21 +22,15 @@ class _TransactionBuilderState extends State<TransactionBuilder> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: _futureAllTransaction,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState != ConnectionState.done) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          final List<TransactionModel> transaction =
-              snapshot.data as List<TransactionModel>;
+    return BlocProvider(
+      create: (context) => TransactionBloc()..add(InitTransaction()),
+      child: BlocBuilder<TransactionBloc, TransactionState>(
+        builder: (context, state) {
           return ListView.builder(
-              itemCount: transaction.length,
+              itemCount: state.transactions.length,
               itemBuilder: (context, index) {
-                final type = transaction[index].type;
-                final data = transaction[index].data;
+                final type = state.transactions[index].type;
+                final data = state.transactions[index].data;
                 final currentData = DateTime.now().day;
                 final transactionData =
                     DateTime.fromMillisecondsSinceEpoch(data).day;
@@ -44,22 +40,24 @@ class _TransactionBuilderState extends State<TransactionBuilder> {
                     color: Colors.transparent,
                     child: ListTile(
                       trailing: Text(
-                        '-${transaction[index].amount}',
+                        '-${state.transactions[index].amount}',
                         style: const TextStyle(color: Colors.red),
                       ),
                       leading: Container(
                         decoration: BoxDecoration(
-                            color: Color(transaction[index].categoryColor),
+                            color:
+                                Color(state.transactions[index].categoryColor),
                             borderRadius: BorderRadius.circular(50)),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child:
-                              SvgPicture.asset(transaction[index].categoryIcon),
+                          child: SvgPicture.asset(
+                              state.transactions[index].categoryIcon),
                         ),
                       ),
-                      subtitle: Text(transaction[index].title.toString()),
+                      subtitle:
+                          Text(state.transactions[index].title.toString()),
                       title: Text(
-                        transaction[index].categoryName,
+                        state.transactions[index].categoryName,
                       ),
                     ),
                   );
@@ -68,24 +66,29 @@ class _TransactionBuilderState extends State<TransactionBuilder> {
                     color: Colors.transparent,
                     elevation: 0.0,
                     child: ListTile(
-                      trailing: Text(transaction[index].amount.toString()),
+                      trailing:
+                          Text(state.transactions[index].amount.toString()),
                       leading: Container(
                         decoration: BoxDecoration(
-                            color: Color(transaction[index].categoryColor),
+                            color:
+                                Color(state.transactions[index].categoryColor),
                             borderRadius: BorderRadius.circular(50)),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child:
-                              SvgPicture.asset(transaction[index].categoryIcon),
+                          child: SvgPicture.asset(
+                              state.transactions[index].categoryIcon),
                         ),
                       ),
-                      subtitle: Text(transaction[index].title.toString()),
-                      title: Text(transaction[index].categoryName),
+                      subtitle:
+                          Text(state.transactions[index].title.toString()),
+                      title: Text(state.transactions[index].categoryName),
                     ),
                   );
                 }
                 return Container();
               });
-        });
+        },
+      ),
+    );
   }
 }
