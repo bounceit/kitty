@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kitty/models/summary_model.dart';
 import 'package:kitty/pages/main_pages/home_page/widgets/bloc/total_bloc.dart';
-import 'package:kitty/pages/main_pages/home_page/widgets/transaction_builder.dart';
-import 'package:kitty/pages/main_pages/search_page/widgets/bloc/transaction_bloc.dart';
 
 class ContainerForList extends StatelessWidget {
   ContainerForList({
