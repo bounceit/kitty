@@ -6,7 +6,7 @@ class MainScreenState {
     required this.selectedYear,
   });
 
-  String selectedMonth;
+  final String selectedMonth;
   final String selectedYear;
 
   MainScreenState copyWith({
