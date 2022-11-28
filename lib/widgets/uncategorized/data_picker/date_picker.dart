@@ -127,10 +127,7 @@ class DatePicker extends StatelessWidget {
                           ),
                           onPressed: () {
                             context.read<MainScreenBloc>().add(
-                                  GetMonthEvent(
-                                    selectedMonth:
-                                        int.parse(state.selectedMonth[index]),
-                                  ),
+                                  GetTapMounthEvent(month: index.toString()),
                                 );
                           },
                           child: Text(
