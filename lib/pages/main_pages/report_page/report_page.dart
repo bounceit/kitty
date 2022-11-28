@@ -48,7 +48,7 @@ class _ReportPageState extends State<ReportPage> {
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              DataWidget(),
+              const DataWidget(),
               Text(
                 'Overview'.toUpperCase(),
               ),
