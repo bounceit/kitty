@@ -26,5 +26,16 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
         );
       },
     );
+    on<GetTapMounthEvent>(
+      (event, emit) async {
+        final String selectedMonths = event.month ?? state.selectedMonth;
+
+        emit(
+          state.copyWith(
+            selectedMonth: selectedMonths,
+          ),
+        );
+      },
+    );
   }
 }
