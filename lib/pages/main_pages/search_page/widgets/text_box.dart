@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kitty/pages/main_pages/search_page/widgets/bloc/transaction_bloc.dart';
-import 'package:kitty/repository/transaction_repository.dart';
 import 'package:kitty/resources/app_colors.dart';
 
 class TextBox extends StatelessWidget {
@@ -12,7 +11,7 @@ class TextBox extends StatelessWidget {
       alignment: Alignment.centerLeft,
       color: Colors.white,
       child: TextField(
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
             border: InputBorder.none,
             hintText: 'Search',
             fillColor: AppColors.appBarAddPage),
