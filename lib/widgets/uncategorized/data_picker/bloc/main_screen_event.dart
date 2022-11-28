@@ -12,3 +12,8 @@ class GetMonthEvent extends MainScreenEvent {
   final int? selectedMonth;
   final int? selectedYear;
 }
+
+class GetTapMounthEvent extends MainScreenEvent {
+  GetTapMounthEvent({this.month});
+  final String? month;
+}
