@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kitty/models/transaction.dart';
 import 'package:kitty/pages/main_pages/search_page/widgets/bloc/transaction_bloc.dart';
-import 'package:kitty/repository/transaction_repository.dart';
 
 class TransactionBuilder extends StatefulWidget {
   const TransactionBuilder({Key? key}) : super(key: key);
@@ -13,13 +11,6 @@ class TransactionBuilder extends StatefulWidget {
 }
 
 class _TransactionBuilderState extends State<TransactionBuilder> {
-  late final Future<List<TransactionModel>> _futureAllTransaction;
-  @override
-  void initState() {
-    super.initState();
-    _futureAllTransaction = KittyRepository().getAlltranzaction();
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
