@@ -78,3 +78,57 @@ class TodayTransactionBuilder extends StatelessWidget {
     );
   }
 }
+
+class AllTransactionContainer extends StatelessWidget {
+  AllTransactionContainer({
+    required this.child,
+    Key? key,
+  }) : super(key: key);
+  Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => TotalBloc()..add(GetTotalList()),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'All Transactions',
+                  style: TextStyle(
+                    color: Colors.grey.shade500,
+                  ),
+                ),
+                BlocBuilder<TotalBloc, TotalState>(
+                  builder: (context, state) {
+                    if (state is TotalLoaded) {
+                      final balance = state.summuryModel.income -
+                          state.summaryExp.expensive;
+                      if (balance > 0) {
+                        return Text(
+                          '+$balance',
+                          style: TextStyle(color: Colors.grey.shade500),
+                        );
+                      } else {
+                        return Text(
+                          '$balance',
+                          style: TextStyle(color: Colors.grey.shade500),
+                        );
+                      }
+                    }
+                    return Container();
+                  },
+                )
+              ],
+            ),
+          ),
+          Expanded(child: child),
+        ],
+      ),
+    );
+  }
+}
