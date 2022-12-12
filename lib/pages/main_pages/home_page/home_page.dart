@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kitty/pages/main_pages/add_new_page/add_new_page.dart';
+import 'package:kitty/pages/main_pages/home_page/widgets/all_transactions_builder.dart';
 import 'package:kitty/pages/main_pages/home_page/widgets/container_for_list.dart';
 import 'package:kitty/pages/main_pages/home_page/widgets/top_container.dart';
 import 'package:kitty/pages/main_pages/home_page/widgets/transaction_builder.dart';
@@ -22,12 +23,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String data = DataWidgetState.selectedData;
-  @override
-  void initState() {
-    context.read<MainScreenBloc>().add(GetMonthEvent());
-
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +73,9 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const DatePicker(),
+                    SizedBox(
+                      height: 30,
+                    ),
                     Container(
                       height: screenHeight * 0.14,
                       width: screenWeight * 0.9,
@@ -90,7 +88,10 @@ class _HomePageState extends State<HomePage> {
                       ),
                       child: const TopContainer(),
                     ),
-                    state.selectedMonth == '11'
+                    SizedBox(
+                      height: 30,
+                    ),
+                    state.selectedMonth == '12'
                         ? ContainerForList(
                             screenHeight: screenHeight,
                             screenWeight: screenWeight,
@@ -98,10 +99,16 @@ class _HomePageState extends State<HomePage> {
                                 child: const TransactionBuilder()),
                           )
                         : Container(),
-                    ContainerForList(
-                      screenHeight: screenHeight,
-                      screenWeight: screenWeight,
-                      child: const TransactionBuilder(),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Expanded(
+                      child: ContainerForList(
+                        screenHeight: screenHeight,
+                        screenWeight: screenWeight,
+                        child: AllTransactionContainer(
+                            child: const AllTransactionBuilder()),
+                      ),
                     ),
                   ],
                 ),
