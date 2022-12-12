@@ -57,57 +57,41 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<MainScreenBloc>(
-          create: (_) => MainScreenBloc(),
-        ),
-        BlocProvider<NavigationBloc>(
-          create: (_) => NavigationBloc(),
-        ),
-        BlocProvider<TransactionBloc>(
-          create: (_) => TransactionBloc(),
-        ),
-        BlocProvider<TotalBloc>(
-          create: (_) => TotalBloc(),
-        ),
-      ],
-      child: BlocConsumer<NavigationBloc, NavigationState>(
-        listener: (_, state) {
-          if (state.status == NavigationStateStatus.menu) {
-            _onSelectMenu(state.route);
-          }
+    return BlocConsumer<NavigationBloc, NavigationState>(
+      listener: (_, state) {
+        if (state.status == NavigationStateStatus.menu) {
+          _onSelectMenu(state.route);
+        }
 
-          if (state.status == NavigationStateStatus.tab) {
-            _onSelectTab(state.route);
-          }
-        },
-        builder: (context, state) {
-          return WillPopScope(
-            onWillPop: _onWillPop,
-            child: Scaffold(
-              body: Navigator(
-                key: _navigatorKey,
-                initialRoute: HomePage.routeName,
-                onGenerateRoute: AppRouter.generateRoute,
-              ),
-              bottomNavigationBar: BottomNavBar(
-                currentTab: state.currentIndex,
-                onSelect: (int index) {
-                  if (state.currentIndex != index) {
-                    context.read<NavigationBloc>().add(
-                          NavigateTab(
-                            tabIndex: index,
-                            route: _pages[index],
-                          ),
-                        );
-                  }
-                },
-              ),
+        if (state.status == NavigationStateStatus.tab) {
+          _onSelectTab(state.route);
+        }
+      },
+      builder: (context, state) {
+        return WillPopScope(
+          onWillPop: _onWillPop,
+          child: Scaffold(
+            body: Navigator(
+              key: _navigatorKey,
+              initialRoute: HomePage.routeName,
+              onGenerateRoute: AppRouter.generateRoute,
             ),
-          );
-        },
-      ),
+            bottomNavigationBar: BottomNavBar(
+              currentTab: state.currentIndex,
+              onSelect: (int index) {
+                if (state.currentIndex != index) {
+                  context.read<NavigationBloc>().add(
+                        NavigateTab(
+                          tabIndex: index,
+                          route: _pages[index],
+                        ),
+                      );
+                }
+              },
+            ),
+          ),
+        );
+      },
     );
   }
 }
